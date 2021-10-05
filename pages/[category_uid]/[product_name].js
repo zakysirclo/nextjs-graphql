@@ -41,7 +41,7 @@ export const GET_PRODUCT_DETAIL = gql`
 function Product() {
   const router = useRouter();
   const { product_name } = router.query;
-  console.log(product_name);
+  // console.log(product_name);
 
   const { data, loading, error } = useQuery(GET_PRODUCT_DETAIL, {
     variables: {
@@ -55,7 +55,7 @@ function Product() {
   if (data.products.items.length === 0)
     return <ErrorMessage message={`Product Not Found!`} />;
 
-  console.log(data.products.items[0]);
+  // console.log(data.products.items[0]);
   const product = data.products.items[0];
 
   return <ProductDetail product={product} />;

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import TopBar from "../TopBar/index.js";
 
 export default function ProductList({ category_detail }) {
   const router = useRouter();
@@ -21,8 +22,8 @@ export default function ProductList({ category_detail }) {
     <>
       <Head>
         <title>{name} - Product List</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <TopBar />
       <Container>
         <Typography variant="h4" align="center" sx={{ margin: "1rem 0" }}>
           {name} Product List
@@ -55,9 +56,12 @@ export default function ProductList({ category_detail }) {
                       alt={item.name}
                     />
                     <CardContent>
-                      <Typography variant="h6" component="div" align="center">
-                        {item.name}
-                      </Typography>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        align="center"
+                        dangerouslySetInnerHTML={{ __html: item.name }}
+                      />
                     </CardContent>
                   </Box>
                 </CardActionArea>

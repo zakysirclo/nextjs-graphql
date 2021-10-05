@@ -20,7 +20,6 @@ export default function CategoryList({ categories }) {
     <>
       <Head>
         <title>Category List</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <TopBar />
       <Container>

@@ -19,20 +19,6 @@ export const GET_PRODUCT_LIST_BY_CATEGORY_UID = gql`
           image {
             url
           }
-          price_range {
-            maximum_price {
-              final_price {
-                currency
-                value
-              }
-            }
-            minimum_price {
-              final_price {
-                currency
-                value
-              }
-            }
-          }
         }
       }
     }
@@ -42,7 +28,7 @@ export const GET_PRODUCT_LIST_BY_CATEGORY_UID = gql`
 function CategoryDetail() {
   const router = useRouter();
   const { category_uid } = router.query;
-  console.log(category_uid);
+  // console.log(category_uid);
 
   const { data, loading, error } = useQuery(GET_PRODUCT_LIST_BY_CATEGORY_UID, {
     variables: {
@@ -55,7 +41,7 @@ function CategoryDetail() {
 
   const category_detail = data.categoryList[0];
 
-  console.log(category_detail);
+  // console.log(category_detail);
   return <ProductList category_detail={category_detail} />;
 }
 
