@@ -33,7 +33,7 @@ export default function CartDetail() {
         <Typography variant="h4" align="center" gutterBottom>
           Cart Detail
         </Typography>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} elevation={5}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
