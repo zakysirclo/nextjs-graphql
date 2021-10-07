@@ -6,16 +6,18 @@ import ErrorMessage from "../../src/components/ErrorMessage/index.js";
 import LoadingSpin from "../../src/components/LoadingSpin/index.js";
 import ProductList from "../../src/components/ProductList/index.js";
 
-export const GET_PRODUCT_LIST_BY_CATEGORY_UID = gql`
-  query GetProductListByCategoryUid($categoryUid: String!) {
-    categoryList(filters: { category_uid: { eq: $categoryUid } }) {
+export const GET_PRODUCT_LIST_BY_CATEGORY_KEY = gql`
+  query GetProductListByCategoryUid($url_key: String!) {
+    categoryList(filters: { url_key: { eq: $url_key } }) {
       uid
       name
+      url_key
       products {
         items {
           __typename
           sku
           name
+          url_key
           image {
             url
           }
@@ -27,12 +29,12 @@ export const GET_PRODUCT_LIST_BY_CATEGORY_UID = gql`
 
 function CategoryDetail() {
   const router = useRouter();
-  const { category_uid } = router.query;
+  const { category_key } = router.query;
   // console.log(category_uid);
 
-  const { data, loading, error } = useQuery(GET_PRODUCT_LIST_BY_CATEGORY_UID, {
+  const { data, loading, error } = useQuery(GET_PRODUCT_LIST_BY_CATEGORY_KEY, {
     variables: {
-      categoryUid: category_uid,
+      url_key: category_key,
     },
   });
 

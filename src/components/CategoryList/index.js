@@ -37,7 +37,7 @@ export default function CategoryList({ categories }) {
               lg={3}
               key={category.uid}
             >
-              <Link href="/[category_uid]" as={category.uid}>
+              <Link href="/[category_key]" as={category.url_key}>
                 <Card>
                   <CardActionArea>
                     {/* <Box sx={{ height: 100 }}> */}

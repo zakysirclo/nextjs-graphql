@@ -15,7 +15,7 @@ import TopBar from "../TopBar/index.js";
 
 export default function ProductList({ category_detail }) {
   const router = useRouter();
-  const { uid, name, products } = category_detail;
+  const { url_key, name, products } = category_detail;
   const { items } = products;
 
   return (
@@ -42,8 +42,11 @@ export default function ProductList({ category_detail }) {
               <Card
                 onClick={() =>
                   router.push(
-                    "[category_uid]/[product_name]",
-                    `${uid}/${item.name}`
+                    {
+                      pathname: `[category_key]/[product_key]`,
+                      query: { name: item.name },
+                    },
+                    `${url_key}/${item.url_key}?name=${item.name}`
                   )
                 }
               >
