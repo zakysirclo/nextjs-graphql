@@ -52,7 +52,6 @@ function CategoryDetail() {
   if (error) return <ErrorMessage message={error.message} />;
   if (loading) return <LoadingSpin />;
 
-  // console.log(category_detail);
   return <ProductList categoryDetail={categoryDetail} />;
 }
 

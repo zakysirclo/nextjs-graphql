@@ -16,6 +16,9 @@ import TopBar from "../TopBar/index.js";
 export default function CategoryList({ categories }) {
   // console.log(categories);
 
+  const defaultImage =
+    "https://b2cdemo.getswift.asia/media/catalog/product/placeholder/default/bg.png";
+
   return (
     <>
       <Head>
@@ -27,7 +30,7 @@ export default function CategoryList({ categories }) {
           Category List
         </Typography>
         <Grid container spacing={2}>
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <Grid
               item
               sx={{ cursor: "pointer" }}
@@ -40,19 +43,24 @@ export default function CategoryList({ categories }) {
               <Link href="/[category_key]" as={category.url_key}>
                 <Card>
                   <CardActionArea>
-                    {/* <Box sx={{ height: 100 }}> */}
-                    {/* <CardMedia
+                    <Box sx={{ height: 250 }}>
+                      <CardMedia
                         component="img"
-                        height="200"
-                        image={category.image_path}
+                        height={200}
+                        image={
+                          category.image_path !== null &&
+                          category.image_path !== ""
+                            ? category.image_path
+                            : defaultImage
+                        }
                         alt={category.name}
-                      /> */}
-                    <CardContent>
-                      <Typography variant="h6" component="div" align="center">
-                        {category.name}
-                      </Typography>
-                    </CardContent>
-                    {/* </Box> */}
+                      />
+                      <CardContent>
+                        <Typography variant="h6" component="div" align="center">
+                          {category.name}
+                        </Typography>
+                      </CardContent>
+                    </Box>
                   </CardActionArea>
                 </Card>
               </Link>
