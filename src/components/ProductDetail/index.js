@@ -3,6 +3,7 @@ import {
   Container,
   Typography,
   Card,
+  CardHeader,
   CardMedia,
   CardContent,
   CardActions,
@@ -50,20 +51,22 @@ function ProductDetail({ product }) {
         <title>{product.name} - Product Detail</title>
       </Head>
       <TopBar />
-      <Container maxWidth="md">
-        <Typography
-          variant="h4"
-          align="center"
-          sx={{ margin: "1rem 0" }}
-          dangerouslySetInnerHTML={{ __html: product.name }}
-        />
-
-        <Card>
+      <Container maxWidth="md" sx={{ padding: "2rem 0" }}>
+        <Card sx={{ boxShadow: 3 }}>
           <Box>
+            <CardHeader
+              title={
+                <Typography
+                  variant="h4"
+                  align="center"
+                  sx={{ margin: "1rem 0" }}
+                  dangerouslySetInnerHTML={{ __html: product.name }}
+                />
+              }
+            />
             <CardMedia
               component="img"
-              width="500"
-              height="500"
+              className={styles.image}
               image={product.image.url}
               alt={product.name}
             />
@@ -101,7 +104,6 @@ function ProductDetail({ product }) {
               onChange={(e) => setQty(e.target.value)}
               InputProps={{ inputProps: { min: 1 } }}
               className={styles.inputQty}
-              // sx={{ width: "5rem" }}
             />
 
             <Fab
