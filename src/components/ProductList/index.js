@@ -13,9 +13,9 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import TopBar from "../TopBar/index.js";
 
-export default function ProductList({ category_detail }) {
+export default function ProductList({ categoryDetail }) {
   const router = useRouter();
-  const { url_key, name, products } = category_detail;
+  const { url_key, name, products } = categoryDetail;
   const { items } = products;
 
   return (

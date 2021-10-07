@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { withApollo } from "../../lib/apollo/index.js";
@@ -30,21 +30,30 @@ export const GET_PRODUCT_LIST_BY_CATEGORY_KEY = gql`
 function CategoryDetail() {
   const router = useRouter();
   const { category_key } = router.query;
-  // console.log(category_uid);
-
+  const [categoryDetail, setCategoryDetail] = useState({
+    url_key: "",
+    name: "",
+    products: {
+      items: [],
+    },
+  });
   const { data, loading, error } = useQuery(GET_PRODUCT_LIST_BY_CATEGORY_KEY, {
     variables: {
       url_key: category_key,
     },
   });
 
+  useEffect(() => {
+    if (data?.categoryList) {
+      setCategoryDetail(data.categoryList[0]);
+    }
+  }, [data]);
+
   if (error) return <ErrorMessage message={error.message} />;
   if (loading) return <LoadingSpin />;
 
-  const category_detail = data.categoryList[0];
-
   // console.log(category_detail);
-  return <ProductList category_detail={category_detail} />;
+  return <ProductList categoryDetail={categoryDetail} />;
 }
 
 export default withApollo({ ssr: true })(CategoryDetail);
