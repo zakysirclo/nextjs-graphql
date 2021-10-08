@@ -4,6 +4,7 @@ const initCart = {
   items: [],
   totalItem: 0,
   totalQty: 0,
+  totalTax: 0,
   subTotal: 0,
   grandTotal: 0,
 };

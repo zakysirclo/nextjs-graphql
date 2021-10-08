@@ -89,11 +89,11 @@ function ProductDetail({ product }) {
           <CardActions className={styles.center}>
             <Fab
               color="secondary"
-              aria-label="add"
-              onClick={() => setQty(qty + 1)}
-              sx={{ marginRight: "8px" }}
+              aria-label="minus"
+              onClick={() => setQty(qty - 1)}
+              disabled={qty === 1 ? true : false}
             >
-              <AddIcon />
+              <RemoveIcon />
             </Fab>
 
             <TextField
@@ -108,11 +108,11 @@ function ProductDetail({ product }) {
 
             <Fab
               color="secondary"
-              aria-label="minus"
-              onClick={() => setQty(qty - 1)}
-              disabled={qty === 1 ? true : false}
+              aria-label="add"
+              onClick={() => setQty(qty + 1)}
+              sx={{ marginRight: "8px" }}
             >
-              <RemoveIcon />
+              <AddIcon />
             </Fab>
           </CardActions>
           <CardActions className={styles.center}>

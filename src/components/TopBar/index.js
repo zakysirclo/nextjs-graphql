@@ -10,8 +10,8 @@ import { useRouter } from "next/router";
 export default function TopBar() {
   const router = useRouter();
   const cart = useReactiveVar(cartVar);
-  console.log(cart, cart.items.length);
-  const countCartItems = cart.items.length;
+  // console.log(cart, cart.items.length);
+  const countCartItems = cart.totalQty;
 
   return (
     <AppBar position="static">

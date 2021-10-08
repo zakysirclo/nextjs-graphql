@@ -17,11 +17,11 @@ import { useReactiveVar } from "@apollo/client";
 import { cartVar } from "../../states/cart/state.js";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { removeFromCart } from "../../states/cart/actions.js";
+import { changeItemQty, removeFromCart } from "../../states/cart/actions.js";
 
 export default function CartDetail() {
   const cart = useReactiveVar(cartVar);
-  const { items, totalItem, totalQty, subTotal, grandTotal } = cart;
+  const { items, totalItem, totalQty, totalTax, subTotal, grandTotal } = cart;
 
   return (
     <>
@@ -41,7 +41,7 @@ export default function CartDetail() {
                 <TableCell align="left">SKU</TableCell>
                 <TableCell align="left">Name</TableCell>
                 <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Qty</TableCell>
+                <TableCell align="center">Qty</TableCell>
                 <TableCell align="right">Total</TableCell>
                 <TableCell align="center"></TableCell>
               </TableRow>
@@ -63,8 +63,23 @@ export default function CartDetail() {
                   <TableCell align="right">
                     {numberFormatID(item.price)}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
+                    <Button
+                      variant="outlined"
+                      sx={{ padding: 0, minWidth: 25, margin: "auto 10px" }}
+                      onClick={() => changeItemQty(item, item.qty - 1)}
+                      disabled={item.qty === 1}
+                    >
+                      -
+                    </Button>
                     {numberFormatID(item.qty)}
+                    <Button
+                      variant="outlined"
+                      sx={{ padding: 0, minWidth: 25, margin: "auto 10px" }}
+                      onClick={() => changeItemQty(item, item.qty + 1)}
+                    >
+                      +
+                    </Button>
                   </TableCell>
                   <TableCell align="right">
                     {numberFormatID(item.total)}
@@ -110,6 +125,16 @@ export default function CartDetail() {
             <Grid item width={200}>
               <Typography variant="body1" align="right" gutterBottom>
                 Rp {numberFormatID(subTotal)}
+              </Typography>
+            </Grid>
+            <Grid item width={200}>
+              <Typography variant="body1" align="left" gutterBottom>
+                Total Tax (PPN)
+              </Typography>
+            </Grid>
+            <Grid item width={200}>
+              <Typography variant="body1" align="right" gutterBottom>
+                Rp {numberFormatID(totalTax)}
               </Typography>
             </Grid>
             <Grid item width={200}>
